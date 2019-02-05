@@ -27,9 +27,9 @@ Version 2.1
   rm -rf /stacks-2.1.tar.gz
 
 %runscript
-if [[ $# -eq 0 ]]; then
-  echo -e "This Singularity image cannot provide a single entrypoint. Please use `<image-name.simg> <CMD>` or `singularity exec <image-name.simg> <CMD>`, where <CMD> is one of the  following:\n"
-  ls /opt/stacks-2.1/bin
+if [ $# -eq 0 ]; then
+  echo -e 'This Singularity image cannot provide a single entrypoint. Please use `<image-name.simg> <CMD>` or `singularity exec <image-name.simg> <CMD>`, where <CMD> is one of the  following:\n'
+  exec ls -l /opt/stacks-2.0/bin | awk '{print $NF}'
 else
-  "$@"
+  exec "$@"
 fi
